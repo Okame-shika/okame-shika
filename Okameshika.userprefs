@@ -1,0 +1,23 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Result/Final_Result.cs">
+    <Files>
+      <File FileName="Assets/Scripts/SceneManager.cs" Line="7" Column="3" />
+      <File FileName="Assets/Scripts/Main/Timer.cs" Line="9" Column="20" />
+      <File FileName="Assets/Scripts/Main/Dolls/Insta_Dolls.cs" Line="8" Column="32" />
+      <File FileName="Assets/Scripts/Main/Dolls/Doll_Variation.cs" Line="6" Column="19" />
+      <File FileName="Assets/Scripts/Main/Gameover.cs" Line="7" Column="23" />
+      <File FileName="Assets/Scripts/Main/UIs/Command_Button.cs" Line="9" Column="33" />
+      <File FileName="Assets/Scripts/Main/Dolls/Next_Doll.cs" Line="6" Column="24" />
+      <File FileName="Assets/Scripts/Main/Dolls/Noroishika/Borderline.cs" Line="8" Column="14" />
+      <File FileName="Assets/Scripts/Main/UIs/Majinai_Button.cs" Line="7" Column="25" />
+      <File FileName="Assets/Scripts/Main/UIs/Doll_Face.cs" Line="6" Column="18" />
+      <File FileName="Assets/Scripts/Main/UIs/Simple_Result.cs" Line="7" Column="13" />
+      <File FileName="Assets/Scripts/Result/Final_Result.cs" Line="12" Column="32" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
