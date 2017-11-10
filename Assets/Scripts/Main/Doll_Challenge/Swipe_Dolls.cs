@@ -8,23 +8,121 @@ using UnityEngine;
 */
 public class Swipe_Dolls : MonoBehaviour
 {
-    private float touchPos;
-    private float endPos;
+	public int moveR = 0;
+	public int moveL = 0;
 
-    float rotate_Z;
+	Vector3 touchPos;
+	Vector3 endPos;
 
-    public int speed;
+    public float speed;
+
+	//Transform target1;
+	//Transform target2;
+
+	float minAngle = 0.0f;
+	float maxAngleR = -20.0f;
+	float maxAngleL = 20.0f;
+
+	IEnumerator StopTimer ()
+	{
+		yield return new WaitForSeconds (0.5f);
+		moveR = 0;
+		moveL = 0;
+		transform.Rotate (0, 0, 0);
+	}
 
 	// Use this for initialization
 	void Start ()
     {
-        
+		//target1 = GameObject.Find ("Cube/target_1").transform;
+		//target2 = GameObject.Find ("Cube/target_2").transform;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+		TouchInfo info = AppUtil.GetTouch();
+
+		if (info == TouchInfo.Began) 
+		{
+			touchPos = AppUtil.GetTouchPosition ();
+		}
+		else if (info == TouchInfo.Ended) 
+		{
+			endPos = AppUtil.GetTouchPosition ();
+		}
+
+		if (transform.position.y != endPos.y) 
+		{
+			endPos.y = 0;
+			endPos.z = 0;
+		}
+
+		Quaternion targetRotate = Quaternion.LookRotation (endPos - transform.position);
+		transform.rotation = Quaternion.Slerp (transform.rotation, targetRotate, Time.deltaTime);
+		float f = transform.eulerAngles.y;
+		if (f > 360) 
+		{
+			f = 0;
+		}
+
+		Debug.Log ("f;" + f);
+
+		/*
+		TouchInfo info = AppUtil.GetTouch();
+
+		if (info == TouchInfo.Began) 
+		{
+			touchPos = AppUtil.GetTouchPosition ().x;
+			StopCoroutine (StopTimer ());
+		}
+		else if (info == TouchInfo.Ended) 
+		{
+			endPos = AppUtil.GetTouchPosition ().x;
+
+			if(endPos - touchPos > 5)
+			{
+				Debug.Log(endPos - touchPos);
+				moveR = 10;
+				if (moveL == 10) 
+				{
+					moveL = 0;
+				}
+			}
+			else if (endPos - touchPos < -5)
+			{
+				Debug.Log(endPos - touchPos);
+				moveL = 10;
+				if (moveR == 10) 
+				{
+					moveR = 0;
+				}
+			}
+		}
+
+		if (moveR == 10) 
+		{
+			transform.Rotate (new Vector3 (0, -1 * speed, 0));
+			StartCoroutine (StopTimer ());
+		}
+		else if (moveL == 10) 
+		{
+			transform.Rotate (new Vector3 (0, speed, 0));
+			StartCoroutine (StopTimer ());
+		}
+
+		
+		if (transform.position.y != endPos.y) 
+		{
+			endPos.y = 0;
+			endPos.z = 0;
+		}*/
+
+		/*
         //Rigidbody rigid = GetComponent<Rigidbody>();
+
+		Vector3 targetPosR = target1.position;
+		Vector3 targetPosL = target2.position;
 
         TouchInfo info = AppUtil.GetTouch();
 
@@ -38,28 +136,20 @@ public class Swipe_Dolls : MonoBehaviour
         {
             endPos = AppUtil.GetTouchPosition().x;
 
-            if(endPos - touchPos > 0)
+            if(endPos - touchPos > 5)
             {
-                Debug.Log(endPos - touchPos);
-                /*
-                Rigidbody rb = GetComponent<Rigidbody>();
-                Vector3 vec = ;
-                /*
-                float next_x = vec.x * Mathf.Cos(Mathf.Deg2Rad * -1) - vec.z * (Mathf.Sin(Mathf.Deg2Rad * -1));
-                float next_z = vec.x * Mathf.Sin(Mathf.Deg2Rad * -1) + vec.z * (Mathf.Cos(Mathf.Deg2Rad * -1));
-                rb.velocity = new Vector3(next_x, rb.velocity.y, next_z);
-                
-                Quaternion target = Quaternion.LookRotation(vec);
+				Debug.Log(endPos - touchPos);
 
-                transform.rotation = Quaternion.Slerp(
-                    transform.rotation,
-                    target,
-                    Time.deltaTime * speed
-                );*/
-                /*
-                float angle = Mathf.LerpAngle(transform.rotation.x, endPos / 2, Time.time * speed);
-                transform.eulerAngles = new Vector3(0, angle, 0);*/
+				Quaternion targetRotR = Quaternion.LookRotation (targetPosR - transform.position);
+				transform.rotation = Quaternion.Slerp (transform.rotation, targetRotR, Time.deltaTime * speed);
             }
-        }
+            else if (endPos - touchPos < -5)
+            {
+				Debug.Log(endPos - touchPos);
+
+				Quaternion targetRotL = Quaternion.LookRotation (targetPosL - transform.position);
+				transform.rotation = Quaternion.Slerp (transform.rotation, targetRotL, Time.deltaTime * speed);
+            }
+        }*/
     }
 }
